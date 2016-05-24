@@ -3,9 +3,7 @@
 #include <iostream>
 using namespace std;
 
-template <typename Type>;
-
-class SingleNode {
+template <typename Type> class SingleNode {
 private:
     Type data;
     SingleNode * next;
@@ -17,7 +15,6 @@ public:
     Type getData() const;
 
     SingleNode * getNext() const;
-
 };
 
 
