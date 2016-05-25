@@ -79,5 +79,33 @@ void CyclicLinkedList::push_back(Type const &newNode) {
     size++;
 }
 
+template<typename Type>
+Type CyclicLinkedList::pop_front() {
+    SingleNode * ptr = head;
+    delete head;
+    head = ptr->next;
+    return ptr;
+}
+
+template<typename Type>
+int CyclicLinkedList::erase(Type const &arg) {
+    SingleNode * ptr = head;
+
+    while(ptr != nullptr){
+        if(head && ptr->data == arg){
+            head = ptr->next;
+            delete ptr;
+            ptr = head;
+            size--;
+        }
+        else if(ptr->data == arg){
+            delete ptr;
+            ptr = ptr->next;
+            size--;
+        }
+        ptr = ptr->next;
+    }
+}
+
 
 
