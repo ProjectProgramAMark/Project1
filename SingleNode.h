@@ -3,20 +3,23 @@
 #include <iostream>
 using namespace std;
 
-template <typename Type> class SingleNode {
+template <class Type> class SingleNode {
 private:
     Type data;
     SingleNode * next;
 
 public:
-    SingleNode(Type const & value, SingleNode * nextNode);
+    SingleNode(Type const &data, SingleNode * next){
+        this->data = data;
+        this->next = next;
+    }
     ~SingleNode();
 
-    Type getData() const;
+    Type getData() const { return data; };
 
-    SingleNode * getNext() const;
+    SingleNode * getNext() const { return next; };
 
-    friend class CyclicLinkedList<Type>;
+    friend class CyclicLinkedList;
 };
 
 
