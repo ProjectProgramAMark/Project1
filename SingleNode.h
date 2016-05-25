@@ -15,6 +15,8 @@ public:
     Type getData() const;
 
     SingleNode * getNext() const;
+
+    friend class CyclicLinkedList<Type>;
 };
 
 
