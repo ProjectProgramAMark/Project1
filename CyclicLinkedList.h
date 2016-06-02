@@ -16,12 +16,12 @@ public:
         size = 0;
     };
     ~CyclicLinkedList(){
-        SingleNode * tmp = head;
+        SingleNode<Type> * tmp = head;
 
 
         if(head){
             while(tmp->next != head){
-                SingleNode * t = tmp;
+                SingleNode<Type> * t = tmp;
                 tmp = tmp->next;
                 delete(t);
             }
@@ -45,7 +45,7 @@ public:
 
     int getCount(Type const & arg) const {
         int count = 0;
-        SingleNode * ptr = head;
+        SingleNode<Type> * ptr = head;
 
         while(ptr != tail){
             if(ptr->data == arg){
@@ -60,27 +60,28 @@ public:
 
 
     void push_front(Type const & newNode){
-        SingleNode * newPtr = new SingleNode(newNode, head);
+        SingleNode<Type> * newPtr = new SingleNode(newNode, head);
         head = newPtr;
         size++;
     }; // add node to front of linked list head = newNode
 
     void push_back(Type const & newNode){
-        SingleNode * newPtr = new SingleNode(newNode, head);
+        SingleNode<Type> * newPtr;
+        newPtr = new SingleNode(newNode, head);
         tail->next = newPtr;
         tail = newPtr;
         size++;
     }; // add node to back of list, tail = newNode
 
     Type pop_front(){
-        SingleNode * ptr = head;
+        SingleNode<Type> * ptr = head;
         delete head;
         head = ptr->next;
         return ptr;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
-        SingleNode * ptr = head;
+        SingleNode<Type> * ptr = head;
 
         while(ptr != nullptr){
             if(head && ptr->data == arg){
@@ -98,6 +99,15 @@ public:
         }
         return size;
     }; // delete nodes in linked list equal to arg
+
+    void printList(){
+        SingleNode<Type> * ptr = head;
+        while(ptr != nullptr){
+            cout << ptr->data << " -> " ;
+            ptr = ptr->next;
+        }
+
+    }
 
 };
 

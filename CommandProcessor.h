@@ -1,6 +1,6 @@
 /*#pragma once
 #include <iostream>
-#include "Venue_from_Xml.h"
+#include
 
 class CommandProcessor {
 private:
@@ -17,6 +17,7 @@ public:
 #pragma once
 #include <string>
 #include "Menu.h"
+#include "CyclicLinkedList.h"
 enum Command_States { Initial, CyclicLinkedList, DoublyLinkedList,  Done };
 using namespace std;
 
