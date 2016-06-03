@@ -7,6 +7,8 @@ Command_States CommandProcessor:: command_state = Initial;
 
 Menu* CommandProcessor::menus[NR_CMD_STATES];
 
+// Create Cyclic Linked List here
+CyclicLinkedList<double> *cyclicLinkedList = new CyclicLinkedList<double>();
 
 void CommandProcessor::Process_Commands()
 {
@@ -52,55 +54,53 @@ void CommandProcessor::Process_Initial_Cmd(const string& cmd)
 }
 
 void CommandProcessor::ProcessCyclicLinkedList(const string &cmd) {
-    // Create Cyclic Linked List here
-    CyclicLinkedList<double> * linkedlist = new CyclicLinkedList<double>();
     if (cmd == "Add Node to Front") {
         string input;
         double value;
         cout << "Enter value of data in node: " << endl;
         getline(cin,input);
         stringstream(input) >> value;
-        linkedlist->push_front(value);
-        linkedlist->printList();
+        cyclicLinkedList->push_front(value);
+        cyclicLinkedList->printList();
     }else if (cmd == "Add Node to Back") {
         string input;
         double value;
         cout << "Enter value of data in node: " << endl;
         getline(cin,input);
         stringstream(input) >> value;
-        linkedlist->push_back(value);
+        cyclicLinkedList->push_back(value);
     }else if (cmd == "Delete Node at Front"){
-        linkedlist->pop_front();
+        cyclicLinkedList->pop_front();
     }else if( cmd == "Delete Value") {
         string input;
         double value;
         cout << "Enter value to be deleted: " << endl;
         getline(cin,input);
         stringstream(input) >> value;
-        linkedlist->erase(value);
+        cyclicLinkedList->erase(value);
     }else if(cmd == "Get Size of List") {
-        linkedlist->getSize();
+        cyclicLinkedList->getSize();
     }else if(cmd == "Is List Empty") {
-        linkedlist->empty();
+        cyclicLinkedList->empty();
     }else if(cmd == "Get Front Node") {
-        linkedlist->front();
+        cyclicLinkedList->front();
     }else if(cmd == "Get Back Node"){
-        linkedlist->back();
+        cyclicLinkedList->back();
     }else if(cmd == "Get Head Pointer ;)"){
-        linkedlist->getHead();
+        cyclicLinkedList->getHead();
     }else if(cmd == "Get Tail Pointer"){
-        linkedlist->getTail();
+        cyclicLinkedList->getTail();
     }else if(cmd == "Get Count"){
         string input;
         double value;
         cout << "Insert value to count: ";
         getline(cin,input);
         stringstream(input) >> value;
-        linkedlist->getCount(value);
+        cyclicLinkedList->getCount(value);
     }else if(cmd == "Print List"){
-        linkedlist->printList();
+        cyclicLinkedList->printList();
     }else if(cmd == "Delete List"){
-        linkedlist->~CyclicLinkedList();
+        cyclicLinkedList->~CyclicLinkedList();
     }else if(cmd == "Exit"){
         exit(0);
     }else{
