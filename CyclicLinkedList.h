@@ -108,11 +108,10 @@ public:
     }; // add node to back of list, tail = newNode
 
     SingleNode<Type> * pop_front(){
-        SingleNode<Type> * ptr = head;
-        delete head;
-        head = ptr->next;
-        cout << "Address: " << ptr << " Data: " << ptr->getData() << endl;
-        return ptr;
+        SingleNode<Type> *temp = head;
+        head = head->next;
+        delete temp;
+        tail->next = head;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){

@@ -12,8 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="431a29a8-2d93-4e1d-964e-c82e25805c53" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Project1.iml" afterPath="$PROJECT_DIR$/.idea/Project1.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CyclicLinkedList.h" afterPath="$PROJECT_DIR$/CyclicLinkedList.h" />
     </list>
     <ignored path="Project1.iws" />
@@ -62,8 +60,8 @@
       <file leaf-file-name="CyclicLinkedList.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CyclicLinkedList.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.06198347">
-              <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.44214877">
+              <caret line="116" column="32" selection-start-line="116" selection-start-column="32" selection-end-line="116" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -705,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CyclicLinkedList.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.06198347">
-          <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.44214877">
+          <caret line="116" column="32" selection-start-line="116" selection-start-column="32" selection-end-line="116" selection-end-column="32" />
           <folding />
         </state>
       </provider>
