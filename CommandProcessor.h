@@ -18,7 +18,7 @@ public:
 #include <string>
 #include "Menu.h"
 #include "CyclicLinkedList.h"
-enum Command_States { Initial, CyclicLinkedList, DoublyLinkedList,  Done };
+enum Command_States { Initial, CLinkedList, DoublyLinkedList,  Done };
 using namespace std;
 
 class CommandProcessor

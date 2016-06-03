@@ -60,14 +60,13 @@ public:
 
 
     void push_front(Type const & newNode){
-        SingleNode<Type> * newPtr = new SingleNode(newNode, head);
+        SingleNode<Type> * newPtr = new SingleNode<Type>(newNode, head);
         head = newPtr;
         size++;
     }; // add node to front of linked list head = newNode
 
     void push_back(Type const & newNode){
-        SingleNode<Type> * newPtr;
-        newPtr = new SingleNode(newNode, head);
+        SingleNode<Type> * newPtr = new  SingleNode<Type>(newNode, head);
         tail->next = newPtr;
         tail = newPtr;
         size++;

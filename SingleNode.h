@@ -12,7 +12,7 @@ public:
     SingleNode(Type const &data, SingleNode * next){
         this->data = data;
         this->next = next;
-    }
+    };
     ~SingleNode();
 
     Type getData() const { return data; };

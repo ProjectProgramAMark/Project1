@@ -24,7 +24,7 @@ void CommandProcessor::Process_Commands()
             case Initial:   Process_Initial_Cmd(*cmd);
                 break;
 
-            case CyclicLinkedList: ProcessCyclicLinkedList(*cmd);
+            case CLinkedList: ProcessCyclicLinkedList(*cmd);
                 break;
 
             case DoublyLinkedList: ProcessDoublyLinkedList(*cmd);
@@ -40,7 +40,7 @@ void CommandProcessor::Process_Commands()
 void CommandProcessor::Process_Initial_Cmd(const string& cmd)
 {
     if (cmd == "Cyclic Linked List") {
-        command_state = CyclicLinkedList;
+        command_state = CLinkedList;
     } else if (cmd == "Doubly Linked List") {
         command_state = DoublyLinkedList;
     } else {
@@ -51,37 +51,34 @@ void CommandProcessor::Process_Initial_Cmd(const string& cmd)
 
 void CommandProcessor::ProcessCyclicLinkedList(const string &cmd) {
     // Create Cyclic Linked List here
-    CyclicLinkedList cycliclinkedlist;
+    CyclicLinkedList cycliclinkedlist = new CyclicLinkedList();
     if (cmd == "Add Node to Front") {
         double data;
         cout << "Enter value of data in node: " << endl;
         cin >> data;
-        cycliclinkedlist.push_front(data);
+        cycliclinkedlist->push_front(data);
     }else if (cmd == "Add Node to Back") {
         double data;
         cout << "Enter value of data in node: " << endl;
         cin >> data;
-        cycliclinkedlist.push_back(data);
+        cycliclinkedlist->push_back(data);
     }else if (cmd == "Delete Node at Front"){
-        cycliclinkedlist.pop_front();
+        cycliclinkedlist->pop_front();
     }else if( cmd == "Delete Value") {
         double data;
         cout << "Enter value to be deleted: " << endl;
         cin >> data;
-        cycliclinkedlist.erase(data);
+        cycliclinkedlist->erase(data);
     }else if(cmd == "Get Size of List"){
-        cycliclinkedlist.getSize();
+        cycliclinkedlist->getSize();
     }else if(cmd == "Print List"){
-        cycliclinkedlist.printList();
+        cycliclinkedlist->printList();
     }else if(cmd == "Delete List") {
-        cycliclinkedlist.~CyclicLinkedList();
+        cycliclinkedlist->~CyclicLinkedList();
     }else if(cmd == "Exit"){
-                                                                                                                                                                                                                                                                  "else if(cmd == "Exit"){
-        menus[Initial] = menu;
-    }
-    else{
+        exit(0);
+    }else{
         cout << "Error" << endl;
-        return 0;
     }
 }
 
@@ -105,7 +102,7 @@ void CommandProcessor::Create_Menus()
     menu->Add_Command("Print List");
     menu->Add_Command("Delete List");
     menu->Add_Command("Exit");
-    menus[CyclicLinkedList] = menu;
+    menus[CLinkedList] = menu;
 
     //Menu for Doubly Linked List
     menu = new Menu("Enter command number:\n");
