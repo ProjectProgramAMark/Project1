@@ -68,12 +68,12 @@ public:
 
 
     void push_front(Type const & newNodeValue){
-        SingleNode<Type> * node = new SingleNode<Type>(newNodeValue, head);
+        SingleNode<Type> * newNode = new SingleNode<Type>(newNodeValue, head);
         SingleNode<Type> * current = head;
         size++;
         if(size == 1) {
-            head = node;
-            node->next = node;
+            head = newNode;
+            newNode->next = newNode;
             tail = head;
         } else {
             //(a) Find out the last node using a loop.
@@ -81,18 +81,30 @@ public:
                 cout << current->getData() << endl;
                 current = current->next;
             }
-            current->next = node;
-            node->next = head;
-            head = node;
+            current->next = newNode;
+            newNode->next = head;
+            head = newNode;
         }
 
     }; // add node to front of linked list head = newNode
 
-    void push_back(Type const & newNode){
-        SingleNode<Type> * newPtr = new SingleNode<Type>(newNode, head);
-        tail->next = newPtr;
-        tail = newPtr;
+    void push_back(Type const & newNodeValue){
+        SingleNode<Type> * newNode = new SingleNode<Type>(newNodeValue, head);
+        SingleNode<Type> * current = head;
         size++;
+        if(size == 1) {
+            head = newNode;
+            newNode->next = newNode;
+            tail = head;
+        } else {
+            while(current->next != head) {
+                cout << current->getData() << endl;
+                current = current->next;
+            }
+            newNode->next = head;
+            current->next = newNode;
+            tail = newNode;
+        }
     }; // add node to back of list, tail = newNode
 
     SingleNode<Type> * pop_front(){
