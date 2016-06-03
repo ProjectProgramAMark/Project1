@@ -61,7 +61,7 @@ void CommandProcessor::ProcessCyclicLinkedList(const string &cmd) {
         getline(cin,input);
         stringstream(input) >> value;
         cyclicLinkedList->push_front(value);
-        cyclicLinkedList->printList();
+        //cyclicLinkedList->printList();
     }else if (cmd == "Add Node to Back") {
         string input;
         double value;

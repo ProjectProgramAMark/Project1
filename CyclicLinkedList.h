@@ -67,23 +67,29 @@ public:
 
 
 
-    void push_front(Type const & newNode){
-        SingleNode<Type> * node = new SingleNode<Type>(newNode, head);
-        size ++;
-        if(size == 1){
-            tail = head;
+    void push_front(Type const & newNodeValue){
+        SingleNode<Type> * node = new SingleNode<Type>(newNodeValue, head);
+        SingleNode<Type> * current = head;
+        size++;
+        if(size == 1) {
             head = node;
-            cout << "this was the first node" << endl;
-        }
-        else{
-            tail->next = head;
+            node->next = node;
+            tail = head;
+        } else {
+            //(a) Find out the last node using a loop.
+            while(current->next != head) {
+                cout << current->getData() << endl;
+                current = current->next;
+            }
+            current->next = node;
             node->next = head;
             head = node;
         }
+
     }; // add node to front of linked list head = newNode
 
     void push_back(Type const & newNode){
-        SingleNode<Type> * newPtr = new  SingleNode<Type>(newNode, head);
+        SingleNode<Type> * newPtr = new SingleNode<Type>(newNode, head);
         tail->next = newPtr;
         tail = newPtr;
         size++;
@@ -121,9 +127,12 @@ public:
     void printList(){
 
         SingleNode<Type> * ptr = head;
-        while(ptr != nullptr){
-            cout << ptr->data << " -> " ;
-            ptr = ptr->next;
+        if(ptr != nullptr) {
+            do {
+                cout << ptr->getData() << " -> ";
+                ptr = ptr->next;
+            } while(ptr != head);
+            cout << endl;
         }
     }
 
