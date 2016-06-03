@@ -31,17 +31,25 @@ public:
     };
 
 
-    int getSize() const { return size; }; //returns size
+    int getSize() const { cout << size << endl; return size; }; //returns size
 
-    bool empty() const { return size == 0; }; // checks to see if linked list is empty
+    bool empty() const { if (size == 0){
+            cout << "List Is Empty" << endl;
+            return true;
+        }
+    else{
+            cout << "List Is Not Empty" << endl;
+            return false;
+        }
+    }; // checks to see if linked list is empty
 
-    Type front() const { return head; };// retrieve object stored in head
+    Type front() const { cout << head->getData() << endl; return head->getData(); };// retrieve object stored in head
 
-    Type back() const { return tail; }; //retrieve object stored in tail
+    Type back() const { cout << tail->getData() << endl; return tail->getData(); }; //retrieve object stored in tail
 
-    SingleNode<Type> * getHead() const { return head->getData(); }; // returns the head pointer
+    SingleNode<Type> * getHead() const { cout << head << endl; return head; }; // returns the head pointer
 
-    SingleNode<Type> * getTail() const { return tail->getData(); }; //returns the tail pointer
+    SingleNode<Type> * getTail() const { cout << tail << endl; return tail; }; //returns the tail pointer
 
     int getCount(Type const & arg) const {
         int count = 0;
@@ -54,15 +62,23 @@ public:
         }
         if(tail->data == arg)
             count++;
-
+        cout << count << endl;
         return count; }; // returns number of nodes in a linked list equal to arg
 
 
 
     void push_front(Type const & newNode){
-        SingleNode<Type> * newPtr = new SingleNode<Type>(newNode, head);
-        head = newPtr;
-        size++;
+        SingleNode<Type> * node = new SingleNode<Type>(newNode, head);
+        size ++;
+        if(size == 1){
+            tail = head;
+            node->next = head;
+        }
+        else{
+            tail->next = node;
+            node->next = head;
+            *head = *node;
+        }
     }; // add node to front of linked list head = newNode
 
     void push_back(Type const & newNode){
@@ -72,10 +88,11 @@ public:
         size++;
     }; // add node to back of list, tail = newNode
 
-    Type pop_front(){
+    SingleNode<Type> * pop_front(){
         SingleNode<Type> * ptr = head;
         delete head;
         head = ptr->next;
+        cout << "Address: " << ptr << " Data: " << ptr->getData() << endl;
         return ptr;
     }; // delete front node, returns object stored in node being popped
 
@@ -96,16 +113,17 @@ public:
             }
             ptr = ptr->next;
         }
+        cout << size << endl;
         return size;
     }; // delete nodes in linked list equal to arg
 
     void printList(){
+
         SingleNode<Type> * ptr = head;
         while(ptr != nullptr){
             cout << ptr->data << " -> " ;
             ptr = ptr->next;
         }
-
     }
 
 };

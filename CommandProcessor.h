@@ -1,6 +1,6 @@
 /*#pragma once
 #include <iostream>
-#include
+#inc
 
 class CommandProcessor {
 private:
@@ -16,6 +16,7 @@ public:
 
 #pragma once
 #include <string>
+#include <sstream>
 #include "Menu.h"
 #include "CyclicLinkedList.h"
 enum Command_States { Initial, CLinkedList, DoublyLinkedList,  Done };
@@ -33,7 +34,6 @@ private:
 
     static void Create_Menus();
     static void Process_Initial_Cmd(const string& cmd);
-    //static void Process_Venue_Selected_Cmd(const string& cmd);
     static void ProcessCyclicLinkedList(const string& cmd);
     static void ProcessDoublyLinkedList(const string& cmd);
 

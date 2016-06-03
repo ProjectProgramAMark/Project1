@@ -6,19 +6,20 @@ using namespace std;
 template <class Type> class SingleNode {
 private:
     Type data;
-    SingleNode * next;
+    SingleNode<Type> * next;
 
 public:
-    SingleNode(Type const &data, SingleNode * next){
+    SingleNode<Type>(Type const &data, SingleNode * next){
         this->data = data;
         this->next = next;
     };
-    ~SingleNode();
+    ~SingleNode<Type>(){};
 
     Type getData() const { return data; };
 
-    SingleNode * getNext() const { return next; };
+    SingleNode<Type> * getNext() const { return next; };
 
+    template <typename T>
     friend class CyclicLinkedList;
 };
 
