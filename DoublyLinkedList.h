@@ -68,10 +68,12 @@ public:
 
 
     void push_front(Type const & newNode){
-        DoubleNode<Type> * node = new DoubleNode<Type>(newNode, head, );
+        DoubleNode<Type> * node = new DoubleNode<Type>(newNode, nullptr, nullptr );
         size ++;
         if(size == 1){
-            tail = head;
+            node->next = head;
+            head = node;
+            tail = node;
             cout << "this was the first node" << endl;
         }
         else{
@@ -82,7 +84,7 @@ public:
     }; // add node to front of linked list head = newNode
 
     void push_back(Type const & newNode){
-        DoubleNode<Type> * newPtr = new  DoubleNode<Type>(newNode, head, prev);
+        DoubleNode<Type> * newPtr = new  DoubleNode<Type>(newNode, nullptr, nullptr);
         tail->next = newPtr;
         tail = newPtr;
         size++;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CommandProcessor.h"
 #include "CyclicLinkedList.h"
+#include "DoublyLinkedList.h"
 using namespace std;
 
 Command_States CommandProcessor:: command_state = Initial;
@@ -9,6 +10,7 @@ Menu* CommandProcessor::menus[NR_CMD_STATES];
 
 // Create Cyclic Linked List here
 CyclicLinkedList<double> *cyclicLinkedList = new CyclicLinkedList<double>();
+DoublyLinkedList<double> *doublyLinkedList = new DoublyLinkedList<double>();
 
 void CommandProcessor::Process_Commands()
 {
@@ -29,8 +31,8 @@ void CommandProcessor::Process_Commands()
             case CLinkedList: ProcessCyclicLinkedList(*cmd);
                 break;
 
-            //case DoublyLinkedList: ProcessDoublyLinkedList(*cmd);
-//                break;
+            case DLinkedList: ProcessDoublyLinkedList(*cmd);
+                break;
 
             case Done:  break;      // Can't happen
         }
@@ -44,9 +46,9 @@ void CommandProcessor::Process_Initial_Cmd(const string& cmd)
 {
     if (cmd == "Cyclic Linked List") {
         command_state = CLinkedList;
-    } //else if (cmd == "Doubly Linked List") {
-        //command_state = DoublyLinkedList;
-   // }
+    }else if (cmd == "Doubly Linked List") {
+        command_state = DLinkedList;
+    }
      else {
         cout << "Quit command\n";
         command_state = Done;
@@ -108,6 +110,61 @@ void CommandProcessor::ProcessCyclicLinkedList(const string &cmd) {
     }
 }
 
+void CommandProcessor::ProcessDoublyLinkedList(const string &cmd) {
+    if (cmd == "Add Node to Front") {
+        string input;
+        double value;
+        cout << "Enter value of data in node: " << endl;
+        getline(cin,input);
+        stringstream(input) >> value;
+        doublyLinkedList->push_front(value);
+        doublyLinkedList->printList();
+    }else if (cmd == "Add Node to Back") {
+        string input;
+        double value;
+        cout << "Enter value of data in node: " << endl;
+        getline(cin,input);
+        stringstream(input) >> value;
+        doublyLinkedList->push_back(value);
+    }else if (cmd == "Delete Node at Front"){
+        doublyLinkedList->pop_front();
+    }else if( cmd == "Delete Value") {
+        string input;
+        double value;
+        cout << "Enter value to be deleted: " << endl;
+        getline(cin,input);
+        stringstream(input) >> value;
+        doublyLinkedList->erase(value);
+    }else if(cmd == "Get Size of List") {
+        doublyLinkedList->getSize();
+    }else if(cmd == "Is List Empty") {
+        doublyLinkedList->empty();
+    }else if(cmd == "Get Front Node") {
+        doublyLinkedList->front();
+    }else if(cmd == "Get Back Node"){
+        doublyLinkedList->back();
+    }else if(cmd == "Get Head Pointer ;)"){
+        doublyLinkedList->getHead();
+    }else if(cmd == "Get Tail Pointer"){
+        doublyLinkedList->getTail();
+    }else if(cmd == "Get Count"){
+        string input;
+        double value;
+        cout << "Insert value to count: ";
+        getline(cin,input);
+        stringstream(input) >> value;
+        doublyLinkedList->getCount(value);
+    }else if(cmd == "Print List"){
+        doublyLinkedList->printList();
+    }else if(cmd == "Delete List"){
+        doublyLinkedList->~DoublyLinkedList();
+    }else if(cmd == "Exit"){
+        exit(0);
+    }else{
+        cout << "Error" << endl;
+    }
+}
+
 void CommandProcessor::Create_Menus()
 {
     // Menu for Initial command state
@@ -152,5 +209,5 @@ void CommandProcessor::Create_Menus()
     menu->Add_Command("Print List");
     menu->Add_Command("Delete List");
     menu->Add_Command("Exit");
-    menus[DoublyLinkedList] = menu;
+    menus[DLinkedList] = menu;
 }
