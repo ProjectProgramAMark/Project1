@@ -5,10 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/CommandProcessor.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Menu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DoublyLinkedList.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CommandProcessor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SingleNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Menu.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SingleNode.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DoubleNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CyclicLinkedList.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

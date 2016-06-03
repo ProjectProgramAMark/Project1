@@ -71,14 +71,13 @@ public:
         SingleNode<Type> * node = new SingleNode<Type>(newNode, head);
         size ++;
         if(size == 1){
-//            *tail = *head;
-            node->next) = head;
+            tail = head;
             head = node;
             cout << "this was the first node" << endl;
         }
         else{
             tail->next = head;
-            *(node->next) = *head;
+            node->next = head;
             head = node;
         }
     }; // add node to front of linked list head = newNode
