@@ -115,6 +115,7 @@ public:
         delete temp;
         tail->next = head;
         size--;
+        return head;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){

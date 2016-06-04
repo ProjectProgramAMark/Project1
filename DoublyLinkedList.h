@@ -82,25 +82,36 @@ public:
         }
         else {
             newNode->next = head;
-            newNode->previous = NULL;
+            newNode->previous = nullptr;
             head->previous = newNode;
             head = newNode;
         }
     }; // add node to front of linked list head = newNode
 
-    void push_back(Type const & newNode){
-        DoubleNode<Type> * newPtr = new  DoubleNode<Type>(newNode, nullptr, nullptr);
-        tail->next = newPtr;
-        tail = newPtr;
+    void push_back(Type const & newNodeValue){
+        DoubleNode<Type> * newNode = new DoubleNode<Type>(newNodeValue, nullptr, nullptr);
         size++;
+        if(size == 1) {
+            newNode->next = head;
+            head = newNode;
+            tail = newNode;
+            head->previous = nullptr;
+            tail->previous = nullptr;
+            cout << "this was the first node" << endl;
+        } else {
+            tail->next = newNode;
+            newNode->previous = tail;
+            tail = newNode;
+        }
     }; // add node to back of list, tail = newNode
 
-    SingleNode<Type> * pop_front(){
+    DoubleNode<Type> * pop_front(){
         DoubleNode<Type> *temp = head;
         head = head->next;
         delete temp;
-        head->previous = NULL;
+        head->previous = nullptr;
         size--;
+        return head;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
