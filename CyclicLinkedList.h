@@ -10,7 +10,7 @@ private:
     int size;
 
 public:
-    CyclicLinkedList(){
+    CyclicLinkedList(){                            //Creates linked list setting pointers to null and size to 0
         head = nullptr;
         tail = nullptr;
         size = 0;
@@ -20,14 +20,16 @@ public:
 
 
         if(head){
-            while(tmp->next != head){
+            while(tmp->next != head){           //Traverses linked list deleting every node after head
                 SingleNode<Type> * t = tmp;
                 tmp = tmp->next;
                 delete(t);
+                size--;
             }
         }
-        delete tmp;
-        head = NULL;
+        delete tmp;                             //Deletes head node
+        size--;
+        head = NULL;                            //Sets head node to NULL
     };
 
 
@@ -55,13 +57,13 @@ public:
         int count = 0;
         SingleNode<Type> * ptr = head;
 
-        while(ptr != tail){
-            if(ptr->data == arg){
-                count++;
+        while(ptr != tail){                               //Traverses linked list starting at head and counts
+            if(ptr->data == arg){                         //number of times arg is found in list. Loop ends at node
+                count++;                                  //before tail
             }
             ptr = ptr->next;
         }
-        if(tail->data == arg)
+        if(tail->data == arg)                             //Checks is tail node data equals arg and counts
             count++;
         cout << count << endl;
         return count;
@@ -70,15 +72,15 @@ public:
 
 
     void push_front(Type const & newNodeValue){
-        SingleNode<Type> * newNode = new SingleNode<Type>(newNodeValue, head);
+        SingleNode<Type> * newNode = new SingleNode<Type>(newNodeValue, head); //creates node that points to head
         SingleNode<Type> * current = head;
         size++;
-        if(size == 1) {
-            head = newNode;
-            newNode->next = newNode;
+        if(size == 1) {                                         //if this is the first node in the linked list
+            head = newNode;                                     //head is the newNode, newNode points to self and
+            newNode->next = newNode;                            //tail = head because of lists cyclcal nature
             tail = head;
         } else {
-            //(a) Find out the last node using a loop.
+            //Find out the last node using a loop.
             while(current->next != head) {
                 cout << current->getData() << endl;
                 current = current->next;
@@ -95,22 +97,22 @@ public:
         SingleNode<Type> * current = head;
         size++;
         if(size == 1) {
-            head = newNode;
+            head = newNode;                         //same implementation as push_front
             newNode->next = newNode;
             tail = head;
         } else {
-            while(current->next != head) {
+            while(current->next != head) {          //traverses to end of the list
                 cout << current->getData() << endl;
                 current = current->next;
             }
-            newNode->next = head;
-            current->next = newNode;
+            newNode->next = head;                   //newNode will point to head and the
+            current->next = newNode;                //previous last element will point to newNode
             tail = newNode;
         }
     }; // add node to back of list, tail = newNode
 
     SingleNode<Type> * pop_front(){
-        SingleNode<Type> *temp = head;
+        SingleNode<Type> *temp = head;              //stores node to be deleted in temp
         head = head->next;
         delete temp;
         tail->next = head;
@@ -130,13 +132,13 @@ public:
         cur = head->next;
         prev = head;
 
-        while(cur != head){
+        while(cur != head){                         //Traverse linked list to end
             if(cur->data == arg){
-                prev->next = cur->next;
+                prev->next = cur->next;             //prev points to cur->next so cur is no longer needed for link
 
                 if(cur == tail){
-                    tail = prev;
-                }
+                    tail = prev;                    //checks if cur is tail; if it is the prev->next points to head
+                }                                   //and tail only needs to equal prev
 
                 delete cur;
                 size--;
@@ -156,9 +158,9 @@ public:
     void printList(){
 
         SingleNode<Type> * ptr = head;
-        if(ptr != nullptr) {
+        if(ptr != nullptr) {                            //checks if list is empty
             do {
-                cout << ptr->getData() << " -> ";
+                cout << ptr->getData() << " -> ";       //traverses list to end, printing head first
                 ptr = ptr->next;
             } while(ptr != head);
             cout << endl;

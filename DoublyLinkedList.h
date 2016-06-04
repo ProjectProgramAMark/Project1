@@ -20,13 +20,16 @@ public:
 
 
         if(head){
-            while(tmp->next != head){
+            while(tmp->next != NULL){
                 DoubleNode<Type> * t = tmp;
                 tmp = tmp->next;
+                tmp->previous = NULL;
                 delete(t);
+                size--;
             }
         }
         delete tmp;
+        size--;
         head = NULL;
     };
 
