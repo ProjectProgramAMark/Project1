@@ -112,24 +112,62 @@ public:
         head = head->next;
         delete temp;
         tail->next = head;
+        size--;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
-        SingleNode<Type> * ptr = head;
+        int beginningSize = size;
+        SingleNode<Type> *cur = NULL;
+        SingleNode<Type> *prev = NULL;
 
-        while(ptr != nullptr){
-            if(head && ptr->data == arg){
-                head = ptr->next;
-                delete ptr;
-                ptr = head;
+        if(head->data == arg){
+            pop_front();
+        }
+
+        cur = head->next;
+        prev = head;
+
+        while(cur != head){
+            if(cur->data == arg){
+                prev->next = cur->next;
+
+                if(cur == tail){
+                    tail = prev;
+                }
+
+                delete cur;
                 size--;
+                break;
             }
-            else if(ptr->data == arg){
-                delete ptr;
-                ptr = ptr->next;
-                size--;
-            }
-            ptr = ptr->next;
+            prev = cur;
+            cur = cur->next;
+        }
+
+//        SingleNode<Type> *cur = head;
+//        SingleNode<Type> *prev = cur;
+//
+//        while(prev != tail) {
+//            cout << cur->data << endl;
+//            if(cur->data == arg) {
+//                if(cur->data == head->data) {
+//                    pop_front();
+//                } else if (cur->data == tail->data) {
+//                    prev->next = head;
+//                    tail = prev;
+//                    delete cur;
+//                    size--;
+//                } else {
+//                    prev->next = cur->next;
+//                    delete cur;
+//                    size--;
+//                }
+//            } else {
+//                prev = cur;
+//                cur = cur->next;
+//            }
+//        }
+        if(beginningSize == size) {
+            cout << "Element was not found! Sorry bub" << endl;
         }
         cout << size << endl;
         return size;
