@@ -47,19 +47,19 @@ public:
 
     Type front() const {
         try {
-            if (empty()) { throw 404; }
+            if (size == 0) { throw 404; }
             cout << head->getData() << endl;
             return head->getData();
         }
-        catch (int x) { cout << "Error " << x << endl; }
+        catch (int x) { cout << "Error " << x << " List is Empty." << endl; }
     };// retrieve object stored in head
 
     Type back() const { try {
-            if (empty()) { throw 404; }
+            if (size == 0) { throw 404; }
             cout << tail->getData() << endl;
             return tail->getData();
         }
-        catch (int x) { cout << "Error " << x << endl; }
+        catch (int x) { cout << "Error " << x << " List is Empty." << endl; }
     };//retrieve object stored in tail
 
     SingleNode<Type> * getHead() const { cout << head << endl; return head; }; // returns the head pointer
@@ -126,7 +126,7 @@ public:
 
     SingleNode<Type> * pop_front(){
         try {
-            if (empty()) { throw 404; }
+            if (size == 0) { throw 404; }
             SingleNode<Type> *temp = head;              //stores node to be deleted in temp
             head = head->next;
             delete temp;
@@ -134,7 +134,7 @@ public:
             size--;
             return head;
         }
-        catch(int x){cout << "Error " << x << endl;}
+        catch(int x){cout << "Error " << x << " List is Empty." << endl;}
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
