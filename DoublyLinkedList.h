@@ -115,21 +115,39 @@ public:
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
-        DoubleNode<Type> * ptr = head;
+        int beginningSize = size;
+        DoubleNode<Type> * cur = NULL;
+        DoubleNode<Type> *  prev = NULL;
 
-        while(ptr != nullptr){
-            if(head && ptr->data == arg){
-                head = ptr->next;
-                delete ptr;
-                ptr = head;
+        if(head->data == arg) {
+            pop_front();
+        }
+
+        cur = head->next;
+        prev = head;
+
+        while(cur != NULL){
+            if(cur->data == arg){
+                if(cur->next == NULL){
+                    prev->next = NULL;
+                    tail = prev;
+                } else {
+                    prev->next = cur->next;
+                    prev  = cur->next->previous;
+                }
+
+
+
+                delete cur;
                 size--;
+                break;
+            } else {
+                prev = cur;
+                cur = cur->next;
             }
-            else if(ptr->data == arg){
-                delete ptr;
-                ptr = ptr->next;
-                size--;
-            }
-            ptr = ptr->next;
+        }
+        if(beginningSize == size){
+            cout << "Element was not found!" << endl;
         }
         cout << size << endl;
         return size;
