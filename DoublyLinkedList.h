@@ -59,27 +59,32 @@ public:
             if(ptr->data == arg){
                 count++;
             }
+            ptr = ptr->next;
         }
         if(tail->data == arg)
             count++;
         cout << count << endl;
-        return count; }; // returns number of nodes in a linked list equal to arg
+        return count;
+    }; // returns number of nodes in a linked list equal to arg
 
 
 
-    void push_front(Type const & newNode){
-        DoubleNode<Type> * node = new DoubleNode<Type>(newNode, nullptr, nullptr );
-        size ++;
-        if(size == 1){
-            node->next = head;
-            head = node;
-            tail = node;
+    void push_front(Type const & newNodeValue){
+        DoubleNode<Type> * newNode = new DoubleNode<Type>(newNodeValue, nullptr, nullptr);
+        size++;
+        if(size == 1) {
+            newNode->next = head;
+            head = newNode;
+            tail = newNode;
+            head->previous = nullptr;
+            tail->previous = nullptr;
             cout << "this was the first node" << endl;
         }
-        else{
-            tail->next = head;
-            node->next = head;
-            head = node;
+        else {
+            newNode->next = head;
+            newNode->previous = NULL;
+            head->previous = newNode;
+            head = newNode;
         }
     }; // add node to front of linked list head = newNode
 
@@ -90,12 +95,12 @@ public:
         size++;
     }; // add node to back of list, tail = newNode
 
-    DoubleNode<Type> * pop_front(){
-        DoubleNode<Type> * ptr = head;
-        delete head;
-        head = ptr->next;
-        cout << "Address: " << ptr << " Data: " << ptr->getData() << endl;
-        return ptr;
+    SingleNode<Type> * pop_front(){
+        DoubleNode<Type> *temp = head;
+        head = head->next;
+        delete temp;
+        head->previous = NULL;
+        size--;
     }; // delete front node, returns object stored in node being popped
 
     int erase(Type const & arg){
@@ -126,6 +131,7 @@ public:
             cout << ptr->data << " -> " ;
             ptr = ptr->next;
         }
+        cout << endl;
     }
 
 };
