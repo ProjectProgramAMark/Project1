@@ -15,7 +15,7 @@ public:
         tail = nullptr;
         size = 0;
     };
-    ~CyclicLinkedList(){
+    ~CyclicLinkedList() {
         SingleNode<Type> * tmp = head;
 
 
@@ -59,11 +59,13 @@ public:
             if(ptr->data == arg){
                 count++;
             }
+            ptr = ptr->next;
         }
         if(tail->data == arg)
             count++;
         cout << count << endl;
-        return count; }; // returns number of nodes in a linked list equal to arg
+        return count;
+    }; // returns number of nodes in a linked list equal to arg
 
 
 
@@ -142,30 +144,7 @@ public:
             prev = cur;
             cur = cur->next;
         }
-
-//        SingleNode<Type> *cur = head;
-//        SingleNode<Type> *prev = cur;
-//
-//        while(prev != tail) {
-//            cout << cur->data << endl;
-//            if(cur->data == arg) {
-//                if(cur->data == head->data) {
-//                    pop_front();
-//                } else if (cur->data == tail->data) {
-//                    prev->next = head;
-//                    tail = prev;
-//                    delete cur;
-//                    size--;
-//                } else {
-//                    prev->next = cur->next;
-//                    delete cur;
-//                    size--;
-//                }
-//            } else {
-//                prev = cur;
-//                cur = cur->next;
-//            }
-//        }
+        // Check if the size isn't the same, which means the element wasn't found
         if(beginningSize == size) {
             cout << "Element was not found! Sorry bub" << endl;
         }
